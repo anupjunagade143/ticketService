@@ -92,7 +92,6 @@
 	<bean id="findAndHoldSeatsThread" class="com.ticketService.executor.FindAndHoldSeatsThread"
 		scope="prototype">
 		<property name="findAndHoldSeatsQueue" ref="findAndHoldSeatsQueue" />
-		<property name="ticketHoldExpireQueue" ref="ticketHoldExpireQueue" />
 	</bean>
 
 	<!-- Thread to reserve the seat in confirmed status -->
