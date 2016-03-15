@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- update below path as per your folder path -->
+	<property name="logBasePath" value="C:/logs/ticketService/" />
+
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d [%thread] %-5level %logger{50} %L - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- file log configuration.. -->
+	<appender name="fileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d [%thread] %-5level %logger{50} %L - %msg%n</pattern>
+		</encoder>
+
+		<file>${logBasePath}/ticketService.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logBasePath}/ticketService.log%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<maxHistory>5</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+
+	<!-- Toggle below configuration for logging during DEBUG and INFO level -->
+	<root level="INFO">
+		<appender-ref ref="fileAppender" />
+	</root>
+
+	<!-- <root level="DEBUG"> <appender-ref ref="fileAppender" /> </root> -->
+</configuration>

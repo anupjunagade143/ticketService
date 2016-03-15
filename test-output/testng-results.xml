@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="51174" started-at="2016-03-15T00:22:27Z" finished-at="2016-03-15T00:23:19Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="51174" started-at="2016-03-15T00:22:27Z" finished-at="2016-03-15T00:23:19Z">
+      <class name="com.ticketService.JunitTicketServiceApp">
+        <test-method status="PASS" signature="validateSeatOrderStatistics()[pri:0, instance:com.ticketService.JunitTicketServiceApp@7957a65f]" name="validateSeatOrderStatistics" duration-ms="51155" started-at="2016-03-14T19:22:27Z" finished-at="2016-03-14T19:23:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateSeatOrderStatistics -->
+      </class> <!-- com.ticketService.JunitTicketServiceApp -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

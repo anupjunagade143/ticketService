@@ -1,0 +1,23 @@
+# configure the count of user order for booking,inquiry
+random.order.count=200
+
+#configure maximum seats to be booked for customer
+min.booking.per.customer=1
+max.booking.per.customer=3
+
+
+#configuring threads for executor framework to manage multiple user requests to book,findAndHold and reserve seats.
+numberSeatsAvailableThread=4
+findAndHoldSeatsThread=4
+reserveSeatsThread=6
+ticketHoldExpireThread=5
+
+
+#time permitted to hold the seats[in seconds]
+ticket.hold.expire.time=10
+
+#print theater available seat count after specific interval[in seconds]
+request.for.available.seat.count.interval=5
+
+#Customer-order-confirmation report location
+order.confirmation.report.name.text=customerOrderReport.txt

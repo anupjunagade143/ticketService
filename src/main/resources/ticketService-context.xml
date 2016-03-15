@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+	<context:annotation-config />
+	<context:property-placeholder location="classpath:/ticketService.properties" />
+	<context:component-scan base-package="com.ticketService" />
+
+	<!-- Start: Load theater details -->
+
+	<bean id="serviceDAO" class="com.ticketService.daoImpl.ServiceDAOImpl" />
+
+	<bean id="ITheatreBalcony1" class="com.ticketService.serviceDaoImpl.Balcony1Impl" />
+
+	<bean id="ITheatreBalcony2" class="com.ticketService.serviceDaoImpl.Balcony2Impl" />
+
+	<bean id="ITheatreMain" class="com.ticketService.serviceDaoImpl.MainLevelImpl" />
+
+	<bean id="ITheatreOrchestra" class="com.ticketService.serviceDaoImpl.OrchestraImpl" />
+
+	<bean id="loadTheaterDetailsHelper" class="com.ticketService.helper.LoadTheaterDetailsHelper" />
+
+	<!-- End: Load theater details -->
+
+	<bean id="seatBookingHelper" class="com.ticketService.helper.SeatBookingHelper" />
+
+	<bean id="serviceThreadPoolExecutor" class="com.ticketService.executor.ServiceThreadPoolExecutor" />
+
+	<bean id="randomDataGenerator" class="com.ticketService.dataGenerator.RandomDataGenerator">
+		<property name="numberOfSeatsAvailableQueue" ref="numberOfSeatsAvailableQueue" />
+		<property name="findAndHoldSeatsQueue" ref="findAndHoldSeatsQueue" />
+	</bean>
+
+	<bean id="commonRandomUtils" class="com.ticketService.dataGenerator.CommonRandomUtils" />
+
+	<bean id="randomOrderCount" class="java.lang.Integer">
+		<constructor-arg value="${random.order.count}" />
+	</bean>
+
+	<bean id="numberSeatsAvailableThreadCount" class="java.lang.Integer">
+		<constructor-arg value="${numberSeatsAvailableThread}" />
+	</bean>
+
+	<bean id="findAndHoldSeatsThreadCount" class="java.lang.Integer">
+		<constructor-arg value="${findAndHoldSeatsThread}" />
+	</bean>
+
+	<bean id="reserveSeatsThreadCount" class="java.lang.Integer">
+		<constructor-arg value="${reserveSeatsThread}" />
+	</bean>
+
+	<bean id="minBookingPerCustomer" class="java.lang.Integer">
+		<constructor-arg value="${min.booking.per.customer}" />
+	</bean>
+
+	<bean id="maxBookingPerCustomer" class="java.lang.Integer">
+		<constructor-arg value="${max.booking.per.customer}" />
+	</bean>
+
+	<bean id="minTheaterLevel" class="java.lang.Integer">
+		<constructor-arg value="${min.theater.level}" />
+	</bean>
+
+	<bean id="maxTheaterLevel" class="java.lang.Integer">
+		<constructor-arg value="${max.theater.level}" />
+	</bean>
+
+	<!-- Below Queue will have orders to enquire total number of seats available -->
+	<bean id="numberOfSeatsAvailableQueue" class="java.util.concurrent.LinkedBlockingQueue"
+		autowire="byName" />
+
+	<!-- Below Queue will have orders to find and hold seats -->
+	<bean id="findAndHoldSeatsQueue" class="java.util.concurrent.LinkedBlockingQueue"
+		autowire="byName" />
+
+	<!-- Below Queue will have actually reserve the seats -->
+	<bean id="reserveSeatsQueue" class="java.util.concurrent.LinkedBlockingQueue"
+		autowire="byName" />
+
+	<!-- Thread class to get seat availability count -->
+	<bean id="numberOfSeatsAvailableThread" class="com.ticketService.executor.NumberOfSeatsAvailableThread"
+		scope="prototype">
+		<property name="numberOfSeatsAvailableQueue" ref="numberOfSeatsAvailableQueue" />
+	</bean>
+
+	<!-- Thread to find and hold seats for user -->
+	<bean id="findAndHoldSeatsThread" class="com.ticketService.executor.FindAndHoldSeatsThread"
+		scope="prototype">
+		<property name="findAndHoldSeatsQueue" ref="findAndHoldSeatsQueue" />
+		<property name="ticketHoldExpireQueue" ref="ticketHoldExpireQueue" />
+	</bean>
+
+	<!-- Thread to reserve the seat in confirmed status -->
+	<bean id="reserveSeatsThread" class="com.ticketService.executor.ReserveSeatsThread"
+		scope="prototype">
+		<property name="reserveSeatsQueue" ref="reserveSeatsQueue" />
+	</bean>
+
+	<!-- Scheduled thread service to for every seatHold booking . call() method 
+		will be executed after seat hold.expiry time is reached -->
+	<bean id="seatHoldTimeExpireThread" class="com.ticketService.executor.SeatHoldTimeExpireThread"
+		scope="prototype">
+		<property name="reserveSeatsQueue" ref="reserveSeatsQueue" />
+	</bean>
+
+	<bean id="balcony1" class="com.ticketService.domain.TheaterLevel" />
+	<bean id="balcony2" class="com.ticketService.domain.TheaterLevel" />
+	<bean id="main" class="com.ticketService.domain.TheaterLevel" />
+	<bean id="orchestra" class="com.ticketService.domain.TheaterLevel" />
+
+	<bean id="orchestraLevel" class="java.lang.Integer">
+		<constructor-arg value="${orchestra.level}" />
+	</bean>
+
+	<bean id="balcony1Level" class="java.lang.Integer">
+		<constructor-arg value="${balcony1.level}" />
+	</bean>
+
+	<bean id="mainLevel" class="java.lang.Integer">
+		<constructor-arg value="${main.level}" />
+	</bean>
+
+	<bean id="balcony2Level" class="java.lang.Integer">
+		<constructor-arg value="${balcony2.level}" />
+	</bean>
+
+	<bean id="ticketHoldExpireTime" class="java.lang.Integer">
+		<constructor-arg value="${ticket.hold.expire.time}" />
+	</bean>
+
+	<bean id="availableSeatCountInterval" class="java.lang.Integer">
+		<constructor-arg value="${request.for.available.seat.count.interval}" />
+	</bean>
+
+	<bean id="theater" class="com.ticketService.domain.Theater" />
+
+	<bean id="iTicketService" class="com.ticketService.daoImpl.TicketServiceImpl" />
+
+	<bean id="balcony1SyncObj" class="java.lang.Object" />
+
+	<bean id="balcony2SyncObj" class="java.lang.Object" />
+
+	<bean id="mainLevelSyncObj" class="java.lang.Object" />
+
+	<bean id="orchestraSyncObj" class="java.lang.Object" />
+
+
+	<bean id="seatSynchronizeOperation"
+		class="com.ticketService.syncOperations.SeatSynchronizeOperation" />
+
+	<bean id="postReservationHelper" class="com.ticketService.serviceDaoImpl.PostReservationHelper" />
+
+	<bean id="confirmedSeatOrder" class="com.ticketService.domain.ConfirmedSeatOrder" />
+
+	<bean id="orderReportWriter" class="com.ticketService.writer.OrderReportWriter" />
+
+	<bean id="orderConfirmationReportNameText" class="java.lang.String">
+		<constructor-arg value="${order.confirmation.report.name.text}" />
+	</bean>
+
+	<bean id="textIReportFormat" class="com.ticketService.daoImpl.TextReportFormatImpl" />
+
+	<bean id="velocityIReportFormat" class="com.ticketService.daoImpl.VelocityReportFormatImpl" />
+
+	<bean id="pdfIReportFormat" class="com.ticketService.daoImpl.PdfReportFormatImpl" />
+
+	<bean id="reportFormatFactory" class="com.ticketService.factory.ReportFormatFactory" />
+
+</beans>

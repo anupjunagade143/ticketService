@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="7" passed="7">
+  <reporter-output>
+  </reporter-output>
+  <suite name="com.ticketService.JunitTestITicketService" duration-ms="1051" started-at="2016-03-15T00:33:30Z" finished-at="2016-03-15T00:33:31Z">
+    <groups>
+    </groups>
+    <test name="Command line test" duration-ms="1051" started-at="2016-03-15T00:33:30Z" finished-at="2016-03-15T00:33:31Z">
+      <class name="com.ticketService.JunitTestITicketService">
+        <test-method status="PASS" signature="loadApplicationContext()[pri:1, instance:com.ticketService.JunitTestITicketService@b47a87e]" name="loadApplicationContext" duration-ms="989" started-at="2016-03-14T19:33:30Z" finished-at="2016-03-14T19:33:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loadApplicationContext -->
+        <test-method status="PASS" signature="numSeatsAvailableInitialCount()[pri:2, instance:com.ticketService.JunitTestITicketService@b47a87e]" name="numSeatsAvailableInitialCount" duration-ms="7" started-at="2016-03-14T19:33:31Z" finished-at="2016-03-14T19:33:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- numSeatsAvailableInitialCount -->
+        <test-method status="PASS" signature="numSeatsAvailableIgnoreOnHoldSeats()[pri:3, instance:com.ticketService.JunitTestITicketService@b47a87e]" name="numSeatsAvailableIgnoreOnHoldSeats" duration-ms="23" started-at="2016-03-14T19:33:31Z" finished-at="2016-03-14T19:33:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- numSeatsAvailableIgnoreOnHoldSeats -->
+        <test-method status="PASS" signature="numSeatsAvailableWhenOnHoldRequestIsCancelled()[pri:4, instance:com.ticketService.JunitTestITicketService@b47a87e]" name="numSeatsAvailableWhenOnHoldRequestIsCancelled" duration-ms="3" started-at="2016-03-14T19:33:31Z" finished-at="2016-03-14T19:33:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- numSeatsAvailableWhenOnHoldRequestIsCancelled -->
+        <test-method status="PASS" signature="findAndHoldSeats()[pri:5, instance:com.ticketService.JunitTestITicketService@b47a87e]" name="findAndHoldSeats" duration-ms="0" started-at="2016-03-14T19:33:31Z" finished-at="2016-03-14T19:33:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findAndHoldSeats -->
+        <test-method status="PASS" signature="numOfSeatsAfterHoldOperation()[pri:6, instance:com.ticketService.JunitTestITicketService@b47a87e]" name="numOfSeatsAfterHoldOperation" duration-ms="1" started-at="2016-03-14T19:33:31Z" finished-at="2016-03-14T19:33:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- numOfSeatsAfterHoldOperation -->
+        <test-method status="PASS" signature="reserveSeat()[pri:7, instance:com.ticketService.JunitTestITicketService@b47a87e]" name="reserveSeat" duration-ms="1" started-at="2016-03-14T19:33:31Z" finished-at="2016-03-14T19:33:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reserveSeat -->
+      </class> <!-- com.ticketService.JunitTestITicketService -->
+    </test> <!-- Command line test -->
+  </suite> <!-- com.ticketService.JunitTestITicketService -->
+</testng-results>
