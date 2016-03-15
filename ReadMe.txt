@@ -17,7 +17,7 @@ cd $project_path/ticketService
 
 -----------Maven Junit Test cases execution command------------------------------------------------
 cd $project_path/ticketService
-
+(note: please have patience while test cases are running.It takes One minute to complete)
 1. mvn -Dtest=JunitTicketServiceApp test -Dlogback.configurationFile=ticket-service-logback.xml
 2. mvn -Dtest=JunitTestITicketService test -Dlogback.configurationFile=ticket-service-logback.xml
 
